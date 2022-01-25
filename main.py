@@ -99,7 +99,7 @@ Lets try some experiments with tuples:
 stack_tuple = ('HTML + CSS + JS + YARN', 'Django',
                'Django Rest', 'SQLite', 'Heroku')
 
-print(len("The width of stack_tuple is:", stack_tuple))
+print("The width of stack_tuple is:", len(stack_tuple))
 # Output: The width of a_list is: 5
 
 print(stack_tuple[1])
@@ -107,3 +107,39 @@ print(stack_tuple[1])
 
 print(stack_tuple[-2])
 # Output: SQLite
+
+"""
+Dictionary:
+
+A dictionary is an unordered collection of items Each item stored in a dictionary has a key and value. Keys are used to retrieve values from the dictionary. Dictionaries have the type dict.
+
+Dictionaries are created by enclosing key-value pairs within curly brackets '{' and '}'
+"""
+
+my_login = {
+    'name': 'Carlos Souza',
+    'age': 21,
+    'sex': 'Male',
+    'married': False,
+    'higth': 1.78
+}
+
+# This is a way for create a dictionary. See this second form:
+
+my_login_num2 = dict(name='CarlosViniMSouza', age=20,
+                     sex='Male', married=True, higth=1.81)
+
+print(my_login)
+# Output: {'name': 'Carlos Souza', 'age': 21, 'sex': 'Male', 'married': False, 'higth': 1.78}
+
+print(my_login_num2)
+# Output: {'name': 'CarlosViniMSouza', 'age': 20, 'sex': 'Male', 'married': True, 'higth': 1.81}
+
+print(type(my_login))
+# Output: <class 'dict'>
+
+print("The width of dict is:", len(my_login_num2))
+# Output: The width of dict is: 5
+
+print(my_login_num2['name'])
+# Output: CarlosViniMSouza
