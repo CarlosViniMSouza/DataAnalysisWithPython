@@ -1,4 +1,4 @@
 git add -A
-git commit -m "Link video course -> add"
+git commit -m "L00: Python Programming Fundamentals Introduction -> add"
 git push -u origin master
 git status

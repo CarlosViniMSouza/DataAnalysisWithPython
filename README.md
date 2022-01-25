@@ -2,6 +2,8 @@
 
 ![logo_article](https://www.freecodecamp.org/news/content/images/size/w2000/2021/02/dataapython.png)
 
+[Course about Data Analysis with Python Course - Numpy, Pandas, Data Visualization](https://www.youtube.com/watch?v=GPVsHOlRBBI&ab_channel=freeCodeCamp.org)
+
 The course is divided into 5 modules. Here is what the modules cover.
 
 ## Lesson 1: Python & Jupyter Fundamentals
@@ -75,5 +77,3 @@ The course is divided into 5 modules. Here is what the modules cover.
 ° Use Matplotlib & Seaborn to create visualizations
 ° Ask and answer interesting questions about the data
 ```
-
-Link for video course: https://www.youtube.com/watch?v=GPVsHOlRBBI&ab_channel=freeCodeCamp.org
