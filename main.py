@@ -82,6 +82,28 @@ stack = ['HTML + CSS + JS + YARN', 'Django', 'Django Rest', 'SQLite', 'Heroku']
 
 a_list = [21, 'Carlos Souza', None, 1.79, stack, True]
 
+print("The width of a_list is: ", len(a_list))
+
 # Creating a empty list:
 
 empty_list = []
+
+"""
+Tuples
+
+A tuple isan ordered collection of values, similar to a list, however it's not possible to add, remove or modify values. A tuple is basically a immutable list.
+
+Lets try some experiments with tuples:
+"""
+
+stack_tuple = ('HTML + CSS + JS + YARN', 'Django',
+               'Django Rest', 'SQLite', 'Heroku')
+
+print(len("The width of stack_tuple is:", stack_tuple))
+# Output: The width of a_list is: 5
+
+print(stack_tuple[1])
+# Output: Django
+
+print(stack_tuple[-2])
+# Output: SQLite
