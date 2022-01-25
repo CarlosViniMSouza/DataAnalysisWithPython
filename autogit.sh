@@ -1,4 +1,4 @@
 git add -A
-git commit -m "L00: Python Programming Fundamentals Introduction -> add"
+git commit -m "Installed ipykernel | notebooks/main.ipynb -> add"
 git push -u origin master
 git status
