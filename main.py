@@ -1,16 +1,35 @@
-# This is a sample Python script.
+# let's do all the intro to Python programming in the main.py file (when we start using Numpy, we'll go back to main.ipynb):
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Store input data in variables (moment 18:19)
+cost_of_ice_bag = 1.25
+profit_margin = .2
+number_of_bags = 500
 
+# Perform the required calculations:
+profit_per_bag = cost_of_ice_bag * profit_margin
+total_profit = number_of_bags * profit_per_bag
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Display the result:
+print("the grocery store makes a total profit of $", total_profit)
+# Output: the grocery store makes a total profit of $ 125.0
 
+# Lets test the equity between variables
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+my_fav_num = 8
+my_least_fav_num = 5
+a_neutral_num = 1
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(my_fav_num == 8)
+# Output: True
+
+print(my_fav_num == my_least_fav_num)
+# Output: False
+
+print(my_fav_num != a_neutral_num)
+# Output: True
+
+print(my_fav_num != 8)
+# Output: False
+
+print(my_least_fav_num > a_neutral_num)
+# Output: True

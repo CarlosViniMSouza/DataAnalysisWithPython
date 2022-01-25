@@ -1,4 +1,4 @@
 git add -A
-git commit -m "Basic Operations add in main.ipynb"
+git commit -m "True Or False tests add in main.py"
 git push -u origin master
 git status
