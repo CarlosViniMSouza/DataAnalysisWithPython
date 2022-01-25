@@ -39,3 +39,25 @@ print(my_least_fav_num > a_neutral_num)
 cost_of_ice_bag = 2.25
 is_ice_bag_expen = cost_of_ice_bag >= 5
 print("Is the ice bag expensive? \nResp.: ", is_ice_bag_expen)
+
+"""
+String in Python have many built-in methods that can be used to manipulate them.
+Lets try out some common string methods.
+
+    Methods: Methods are functions associated with data types, and are
+    accessed using the . notation e.g. variable_name.method() or "a string"
+    .method() - Methods are a powerful technique for associating common operations with values of specific data types.
+
+The .lower(), .upper() and .capitalize() methods are used to change the case of the characters.
+"""
+
+today = "Tuesday"
+
+print(today.lower())
+# Output: tuesday
+
+print(today.upper())
+# Output: TUESDAY
+
+print(today.capitalize())
+# Output: Tuesday
