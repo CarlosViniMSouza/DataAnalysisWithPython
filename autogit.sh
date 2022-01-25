@@ -1,4 +1,4 @@
 git add -A
-git commit -m "Installed ipykernel | notebooks/main.ipynb -> add"
+git commit -m "Basic Operations add in main.ipynb"
 git push -u origin master
 git status
