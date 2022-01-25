@@ -33,3 +33,9 @@ print(my_fav_num != 8)
 
 print(my_least_fav_num > a_neutral_num)
 # Output: True
+
+# Just like arithmetic operations, the result of a comparison operation can also stored in a variable
+
+cost_of_ice_bag = 2.25
+is_ice_bag_expen = cost_of_ice_bag >= 5
+print("Is the ice bag expensive? \nResp.: ", is_ice_bag_expen)
