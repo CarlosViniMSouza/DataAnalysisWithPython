@@ -1,6 +1,9 @@
 # let's do all the intro to Python programming in the main.py file (when we start using Numpy, we'll go back to main.ipynb):
 
 # Store input data in variables (moment 18:19)
+from numpy import empty
+
+
 cost_of_ice_bag = 1.25
 profit_margin = .2
 number_of_bags = 500
@@ -38,7 +41,7 @@ print(my_least_fav_num > a_neutral_num)
 
 cost_of_ice_bag = 2.25
 is_ice_bag_expen = cost_of_ice_bag >= 5
-print("Is the ice bag expensive? \nResp.: ", is_ice_bag_expen)
+print("Is the ice bag expensive? \nAns: ", is_ice_bag_expen)
 
 """
 String in Python have many built-in methods that can be used to manipulate them.
@@ -61,3 +64,24 @@ print(today.upper())
 
 print(today.capitalize())
 # Output: Tuesday
+
+"""
+LIST
+
+A list in Python is an ordered collection of values. Lists can hold values of different data types, and support operations to add, remove and change values. Lists have the type list.
+
+To create a list, enclose a list of values within square brackets '[' and ']', separated by commas.
+"""
+
+fruits = ['apple', 'banana', 'berries', 'strawberries']
+print(fruits)
+print(type(fruits))
+
+# Creating a list of different data types:
+stack = ['HTML + CSS + JS + YARN', 'Django', 'Django Rest', 'SQLite', 'Heroku']
+
+a_list = [21, 'Carlos Souza', None, 1.79, stack, True]
+
+# Creating a empty list:
+
+empty_list = []
