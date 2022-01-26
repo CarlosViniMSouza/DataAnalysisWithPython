@@ -3,7 +3,6 @@
 # Store input data in variables (moment 18:19)
 from numpy import empty
 
-
 cost_of_ice_bag = 1.25
 profit_margin = .2
 number_of_bags = 500
@@ -165,3 +164,33 @@ else:
     print("Sorry, you reproved! :(")
 
 # I added the 'else' to keep the code coherence.
+
+# The session 'loops while()' and 'functions and sub-sessions' is very long.
+
+"""
+Modules and library functions:
+
+We can already see that the EMI for Option 1 is lower than the EMI for Option 2. However, it would be nice to round up the amount to full dollars, rather than showing digits after the decimal.
+
+However, since rounding numbers is a fairly common operation, Python provides a function for it (along with thousands of other functions) as part of the Python Standard Library.
+Functions are organized into modules that need to be imported to use the functions they contain.
+
+Modules: Modules are files containing Python code (variables, functions, classes, etc.). They provide a way of organizing the code for large Python projects into files and folders.
+The key benefit of using modules is namespaces: you must import the module to use its functions within a Python script or notebook. Namespaces provide encapsulation and avoid naming 
+conflicts between your code and a module or across modules.
+"""
+
+import math
+
+print(help(math.ceil))
+"""
+Output:
+
+ceil(x, /)
+    Return the ceiling of x as an Integral.
+    
+    This is the smallest integer >= x.
+"""
+
+print(math.ceil(1.05))
+# Output: 2
