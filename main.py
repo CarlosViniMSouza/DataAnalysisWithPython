@@ -143,3 +143,25 @@ print("The width of dict is:", len(my_login_num2))
 
 print(my_login_num2['name'])
 # Output: CarlosViniMSouza
+
+"""
+The 'if' statement:
+
+In Python, branching is done using the if statement, which is written as follows:
+
+    if <condition>:
+        <statement1>
+        <statement2>
+
+The condition can either be a variable or a expression. If the condition evaluates to True, then the 
+statements within the if block are executed.
+"""
+
+mean = 8.5
+
+if mean >= 6.0:
+    print("Congratulations! You passed!")
+else:
+    print("Sorry, you reproved! :(")
+
+# I added the 'else' to keep the code coherence.
