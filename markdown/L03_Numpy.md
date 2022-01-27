@@ -157,23 +157,36 @@ kanto[2]
 ## Operating on Numpy arrays
 
 
-We can now compute the dot product of the two vectors using the np.dot function.
+We can now compute the dot product of the two vectors using the `np.dot` function.
 
+```python
 np.dot(kanto, weights)
-56.8
+# Output: 56.8
+```
+
 We can achieve the same result with low-level operations supported by Numpy arrays: performing an element-wise multiplication and calculating the resulting numbers' sum.
 
+```python
 (kanto * weights).sum()
-56.8
-The * operator performs an element-wise multiplication of two arrays if they have the same size. The sum method calculates the sum of numbers in an array.
+# Output: 56.8
+```
 
+The `*` operator performs an element-wise multiplication of two arrays if they have the same size.
+
+```python
 arr1 = np.array([1, 2, 3])
 arr2 = np.array([4, 5, 6])
 arr1 * arr2
-array([ 4, 10, 18])
+# Output: array([ 4, 10, 18])
+```
+
+```python
 arr2.sum()
-15
+# Output: 15
+```
+
 Benefits of using Numpy arrays
+
 Numpy arrays offer the following benefits over Python lists for operating on numerical data:
 
 Ease of use: You can write small, concise, and intuitive mathematical expressions like (kanto * weights).sum() rather than using loops & custom functions like crop_yield.
