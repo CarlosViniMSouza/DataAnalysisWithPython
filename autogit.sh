@@ -1,4 +1,4 @@
 git add -A
-git commit -m "Next content: Numerical Computing (2:17:17)"
+git commit -m "L02_Numpy add in markdown & notebook folders"
 git push -u origin master
 git status
