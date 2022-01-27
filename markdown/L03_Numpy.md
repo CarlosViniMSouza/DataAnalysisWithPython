@@ -185,47 +185,57 @@ arr2.sum()
 # Output: 15
 ```
 
-Benefits of using Numpy arrays
+## Benefits of using Numpy arrays
 
 Numpy arrays offer the following benefits over Python lists for operating on numerical data:
 
-Ease of use: You can write small, concise, and intuitive mathematical expressions like (kanto * weights).sum() rather than using loops & custom functions like crop_yield.
-Performance: Numpy operations and functions are implemented internally in C++, which makes them much faster than using Python statements & loops that are interpreted at runtime
+> ° **Ease of use**: You can write small, concise, and intuitive mathematical expressions like `(kanto * weights).sum()` rather than using loops & custom functions like `crop_yield`.
+
+> ° **Performance**: Numpy operations and functions are implemented internally in C++, which makes them much faster than using Python statements & loops that are interpreted at runtime
 Here's a comparison of dot products performed using Python loops vs. Numpy arrays on two vectors with a million elements each.
 
+```python
 # Python lists
-arr1 = list(range(1000000))
-arr2 = list(range(1000000, 2000000))
+arr1 = list(range(1000))
+arr2 = list(range(1000, 2000))
 
 # Numpy arrays
 arr1_np = np.array(arr1)
 arr2_np = np.array(arr2)
+```
+
+```python
 %%time
 result = 0
 for x1, x2 in zip(arr1, arr2):
     result += x1*x2
 result
-CPU times: user 151 ms, sys: 1.35 ms, total: 153 ms
-Wall time: 152 ms
-833332333333500000
+
+"""
+Output:
+
+CPU times: total: 0 ns
+Wall time: 0 ns
+832333500
+"""
+```
+
+```python
 %%time
 np.dot(arr1_np, arr2_np)
-CPU times: user 1.96 ms, sys: 751 µs, total: 2.71 ms
-Wall time: 1.6 ms
-833332333333500000
+
+"""
+Output:
+
+CPU times: total: 0 ns
+Wall time: 21.8 ms
+832333500
+"""
+```
+
 As you can see, using np.dot is 100 times faster than using a for loop. This makes Numpy especially useful while working with really large datasets with tens of thousands or millions of data points.
 
-Let's save our work before continuing.
-
-import jovian
-jovian.commit()
-[jovian] Attempting to save notebook..
-[jovian] Updating notebook "aakashns/python-numerical-computing-with-numpy" on https://jovian.ai/
-[jovian] Uploading notebook..
-[jovian] Capturing environment..
-[jovian] Committed successfully! https://jovian.ai/aakashns/python-numerical-computing-with-numpy
-'https://jovian.ai/aakashns/python-numerical-computing-with-numpy'
-Multi-dimensional Numpy arrays
+## Multi-dimensional Numpy arrays
 We can now go one step further and represent the climate data for all the regions using a single 2-dimensional Numpy array.
 
 climate_data = np.array([[73, 67, 43],
