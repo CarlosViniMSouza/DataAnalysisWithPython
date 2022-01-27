@@ -1,4 +1,4 @@
 git add -A
-git commit -m "Next content: Documentation Functions (2:08:24)"
+git commit -m "Next content: Numerical Computing (2:17:17)"
 git push -u origin master
 git status
