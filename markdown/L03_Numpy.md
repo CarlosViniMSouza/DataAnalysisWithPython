@@ -384,3 +384,99 @@ array([[25., 76., 99.],
 climate_data.shape
 # Output: (10000, 3)
 ```
+
+We can now perform a matrix multiplication using the `@` operator to predict the yield of apples for the entire dataset using a given set of weights.
+
+```python
+weights = np.array([0.3, 0.2, 0.5])
+yields = climate_data @ weights
+yields
+
+# Output: array([72.2, 59.7, 65.2, ..., 71.1, 80.7, 73.4])
+```
+
+```python
+yields.shape
+# Output: (10000,)
+```
+
+Let's add the `yields` to `climate_data` as a fourth column using the `np.concatenate` function.
+
+```python
+climate_results = np.concatenate((climate_data, yields.reshape(10000, 1)), axis=1)
+
+climate_results
+
+"""
+Output:
+
+array([[25. , 76. , 99. , 72.2],
+       [39. , 65. , 70. , 59.7],
+       [59. , 45. , 77. , 65.2],
+       ...,
+       [99. , 62. , 58. , 71.1],
+       [70. , 71. , 91. , 80.7],
+       [92. , 39. , 76. , 73.4]])
+"""
+```
+
+There are a couple of subtleties here:
+
+* Since we wish to add new columns, we pass the argument `axis=1` to `np.concatenate`. The `axis` argument specifies the dimension for concatenation.
+
+*  The arrays should have the same number of dimensions, and the same length along each except the dimension used for concatenation. We use the [`np.reshape`](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html) function to change the shape of `yields` from `(10000,)` to `(10000,1)`.
+
+Here's a visual explanation of `np.concatenate` along `axis=1` (can you guess what `axis=0` results in?):
+
+<img src="https://www.w3resource.com/w3r_images/python-numpy-image-exercise-58.png" width="300"></img>
+
+The best way to understand what a Numpy function does is to experiment with it and read the documentation to learn about its arguments & return values. Use the cells below to experiment with `np.concatenate` and `np.reshape`.
+
+Let's write the final results from our computation above back to a file using the `np.savetxt` function.
+
+```python
+climate_results
+
+"""
+Output:
+
+array([[25. , 76. , 99. , 72.2],
+       [39. , 65. , 70. , 59.7],
+       [59. , 45. , 77. , 65.2],
+       ...,
+       [99. , 62. , 58. , 71.1],
+       [70. , 71. , 91. , 80.7],
+       [92. , 39. , 76. , 73.4]])
+"""
+```
+
+```python
+np.savetxt('climate_results.txt', 
+           climate_results, 
+           fmt='%.2f', 
+           delimiter=',',
+           header='temperature,rainfall,humidity,yeild_apples', 
+           comments='')
+```
+
+The results are written back in the CSV format to the file `climate_results.txt`. 
+
+```
+temperature,rainfall,humidity,yeild_apples
+25.00,76.00,99.00,72.20
+39.00,65.00,70.00,59.70
+59.00,45.00,77.00,65.20
+84.00,63.00,38.00,56.80
+...
+```
+
+Numpy provides hundreds of functions for performing operations on arrays. Here are some commonly used functions:
+
+
+* Mathematics: `np.sum`, `np.exp`, `np.round`, arithemtic operators 
+* Array manipulation: `np.reshape`, `np.stack`, `np.concatenate`, `np.split`
+* Linear Algebra: `np.matmul`, `np.dot`, `np.transpose`, `np.eigvals`
+* Statistics: `np.mean`, `np.median`, `np.std`, `np.max`
+ 
+
+You can find a full list of array functions here: https://numpy.org/doc/stable/reference/routines.html
