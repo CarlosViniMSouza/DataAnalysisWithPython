@@ -327,3 +327,60 @@ np.matmul(climate_data, weights)
 climate_data @ weights
 # Output: array([56.8, 76.9, 81.9, 57.7, 74.9])
 ```
+
+## Working with CSV data files
+
+Numpy also provides helper functions reading from & writing to files. Let's download a file `climate.txt`, which contains 10,000 climate measurements (temperature, rainfall & humidity) in the following format:
+
+
+```
+temperature,rainfall,humidity
+25.00,76.00,99.00
+39.00,65.00,70.00
+59.00,45.00,77.00
+84.00,63.00,38.00
+66.00,50.00,52.00
+41.00,94.00,77.00
+91.00,57.00,96.00
+49.00,96.00,99.00
+67.00,20.00,28.00
+...
+```
+
+This format of storing data is known as *comma-separated values* or CSV. 
+
+> **CSVs**: A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values. Each line of the file is a data record. Each record consists of one or more fields, separated by commas.
+
+To read this file into a numpy array, we can use the `genfromtxt` function.
+
+```python
+import urllib.request
+
+urllib.request.urlretrieve(
+    'https://gist.github.com/BirajCoder/a4ffcb76fd6fb221d76ac2ee2b8584e9/raw/4054f90adfd361b7aa4255e99c2e874664094cea/climate.csv', 
+    'climate.txt')
+
+# Output: ('climate.txt', <http.client.HTTPMessage at 0x1acd496b1f0>)
+```
+
+```python
+climate_data = np.genfromtxt('climate.txt', delimiter=',', skip_header=1)
+
+climate_data
+
+"""
+Output:
+array([[25., 76., 99.],
+       [39., 65., 70.],
+       [59., 45., 77.],
+       ...,
+       [99., 62., 58.],
+       [70., 71., 91.],
+       [92., 39., 76.]])
+"""
+```
+
+```python
+climate_data.shape
+# Output: (10000, 3)
+```

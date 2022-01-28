@@ -1,5 +1,5 @@
 git add -A
-git commit -m "L02_Numpy -> Next Topic: Working with CSV data files"
+git commit -m "Working with CSV data files / Part1 -> add"
 git push -u origin master
 git status
 exit
