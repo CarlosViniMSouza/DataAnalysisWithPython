@@ -480,3 +480,80 @@ Numpy provides hundreds of functions for performing operations on arrays. Here a
  
 
 You can find a full list of array functions here: https://numpy.org/doc/stable/reference/routines.html
+
+
+## Arithmetic operations, broadcasting and comparison
+
+Numpy arrays support arithmetic operators like `+`, `-`, `*`, etc. You can perform an arithmetic operation with a single number (also called scalar) or with another array of the same shape. Operators make it easy to write mathematical expressions with multi-dimensional arrays.
+
+```python
+arr2 = np.array([[1, 2, 3, 4], 
+                 [5, 6, 7, 8], 
+                 [9, 1, 2, 3]])
+
+arr3 = np.array([[11, 12, 13, 14], 
+                 [15, 16, 17, 18], 
+                 [19, 11, 12, 13]])
+
+# Adding a scalar
+arr2 + 3
+
+"""
+Output:
+
+array([[ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [12,  4,  5,  6]])
+"""
+```
+
+```python
+# Element-wise subtraction
+arr3 - arr2
+
+"""
+Output:
+
+array([[10, 10, 10, 10],
+       [10, 10, 10, 10],
+       [10, 10, 10, 10]])
+"""
+```
+
+```python
+# Division by scalar
+arr2 / 2
+
+"""
+Output:
+
+array([[0.5, 1. , 1.5, 2. ],
+       [2.5, 3. , 3.5, 4. ],
+       [4.5, 0.5, 1. , 1.5]])
+"""
+```
+
+```python
+# Element-wise multiplication
+arr2 * arr3
+
+"""
+Output:
+array([[ 11,  24,  39,  56],
+       [ 75,  96, 119, 144],
+       [171,  11,  24,  39]])
+"""
+```
+
+```python
+# Modulus with scalar
+arr2 % 4
+
+"""
+Output:
+array([[1, 2, 3, 0],
+       [1, 2, 3, 0],
+       [1, 1, 2, 3]], dtype=int32)
+
+"""
+```
