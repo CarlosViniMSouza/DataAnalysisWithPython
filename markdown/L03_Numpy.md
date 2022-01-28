@@ -238,56 +238,92 @@ As you can see, using np.dot is 100 times faster than using a for loop. This mak
 ## Multi-dimensional Numpy arrays
 We can now go one step further and represent the climate data for all the regions using a single 2-dimensional Numpy array.
 
+```python
 climate_data = np.array([[73, 67, 43],
                          [91, 88, 64],
                          [87, 134, 58],
                          [102, 43, 37],
                          [69, 96, 70]])
 climate_data
+
+"""
+Output:
+
 array([[ 73,  67,  43],
        [ 91,  88,  64],
        [ 87, 134,  58],
        [102,  43,  37],
        [ 69,  96,  70]])
+"""
+```
+
 If you've taken a linear algebra class in high school, you may recognize the above 2-d array as a matrix with five rows and three columns. Each row represents one region, and the columns represent temperature, rainfall, and humidity, respectively.
 
-Numpy arrays can have any number of dimensions and different lengths along each dimension. We can inspect the length along each dimension using the .shape property of an array.
+Numpy arrays can have any number of dimensions and different lengths along each dimension. We can inspect the length along each dimension using the `.shape` property of an array.
 
+<img src="https://fgnt.github.io/python_crashkurs_doc/_images/numpy_array_t.png" width="420"></img>
 
+```python
 # 2D array (matrix)
 climate_data.shape
-(5, 3)
-weights
-array([0.3, 0.2, 0.5])
+# Output: (5, 3)
+```
+
+```python
+weights.shape
+# Output: array([0.3, 0.2, 0.5])
+```
+
+```python
 # 1D array (vector)
 weights.shape
-(3,)
+# Output: (3,)
+```
+
+```python
 # 3D array 
 arr3 = np.array([
     [[11, 12, 13], 
      [13, 14, 15]], 
     [[15, 16, 17], 
      [17, 18, 19.5]]])
-arr3.shape
-(2, 2, 3)
-All the elements in a numpy array have the same data type. You can check the data type of an array using the .dtype property.
 
+arr3.shape
+# Output: (2, 2, 3)
+```
+
+All the elements in a numpy array have the same data type. You can check the data type of an array using the `.dtype` property.
+
+```python
 weights.dtype
-dtype('float64')
+# Output: dtype('float64')
+```
+
+```python
 climate_data.dtype
-dtype('int64')
+# Output: dtype('int64')
+```
 If an array contains even a single floating point number, all the other elements are also converted to floats.
 
+```python
 arr3.dtype
-dtype('float64')
-We can now compute the predicted yields of apples in all the regions, using a single matrix multiplication between climate_data (a 5x3 matrix) and weights (a vector of length 3). Here's what it looks like visually:
+# Output: dtype('float64')
+```
 
+We can now compute the predicted yields of apples in all the regions, using a single matrix multiplication between `climate_data` (a 5x3 matrix) and `weights` (a vector of length 3). Here's what it looks like visually:
+
+<img src="https://i.imgur.com/LJ2WKSI.png" width="240"></img>
 
 You can learn about matrices and matrix multiplication by watching the first 3-4 videos of this playlist: https://www.youtube.com/watch?v=xyAuNHPsq-g&list=PLFD0EB975BA0CC1E0&index=1 .
 
-We can use the np.matmul function or the @ operator to perform matrix multiplication.
+We can use the `np.matmul` function or the `@` operator to perform matrix multiplication.
 
+```python
 np.matmul(climate_data, weights)
-array([56.8, 76.9, 81.9, 57.7, 74.9])
+# Output: array([56.8, 76.9, 81.9, 57.7, 74.9])
+```
+
+```python
 climate_data @ weights
-array([56.8, 76.9, 81.9, 57.7, 74.9])
+# Output: array([56.8, 76.9, 81.9, 57.7, 74.9])
+```
