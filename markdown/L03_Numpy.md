@@ -557,3 +557,69 @@ array([[1, 2, 3, 0],
 
 """
 ```
+
+### Array Broadcasting
+
+Numpy arrays also support *broadcasting*, allowing arithmetic operations between two arrays with different numbers of dimensions but compatible shapes. Let's look at an example to see how it works.
+
+```python
+arr2 = np.array([[1, 2, 3, 4], 
+                 [5, 6, 7, 8], 
+                 [9, 1, 2, 3]])
+
+arr2.shape
+
+# Output: (3, 4)
+```
+
+```python
+arr4 = np.array([4, 5, 6, 7])
+
+arr4.shape
+
+# Output: (4,)
+```
+
+```python
+arr2 + arr4
+
+"""
+Output:
+
+array([[ 5,  7,  9, 11],
+       [ 9, 11, 13, 15],
+       [13,  6,  8, 10]])
+"""
+```
+
+When the expression `arr2 + arr4` is evaluated, `arr4` (which has the shape `(4,)`) is replicated three times to match the shape `(3, 4)` of `arr2`. Numpy performs the replication without actually creating three copies of the smaller dimension array, thus improving performance and using lower memory.
+
+<img src="https://jakevdp.github.io/PythonDataScienceHandbook/figures/02.05-broadcasting.png" width="360">
+
+Broadcasting only works if one of the arrays can be replicated to match the other array's shape.
+
+```python
+arr5 = np.array([7, 8])
+
+arr5.shape
+
+# Output: (2,)
+```
+
+```python
+arr2 + arr5
+
+"""
+Output:
+
+
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-72-c22e92053c39> in <module>
+----> 1 arr2 + arr5
+
+ValueError: operands could not be broadcast together with shapes (3,4) (2,)
+"""
+```
+
+In the above example, even if `arr5` is replicated three times, it will not match the shape of `arr2`. Hence `arr2 + arr5` cannot be evaluated successfully. Learn more about broadcasting here: https://numpy.org/doc/stable/user/basics.broadcasting.html .
