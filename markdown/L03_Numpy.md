@@ -575,7 +575,7 @@ arr2.shape
 ```python
 arr4 = np.array([4, 5, 6, 7])
 
-arr4.shape
+var = arr4.shape
 
 # Output: (4,)
 ```
@@ -623,3 +623,62 @@ ValueError: operands could not be broadcast together with shapes (3,4) (2,)
 ```
 
 In the above example, even if `arr5` is replicated three times, it will not match the shape of `arr2`. Hence `arr2 + arr5` cannot be evaluated successfully. Learn more about broadcasting here: https://numpy.org/doc/stable/user/basics.broadcasting.html .
+
+### Array Comparison
+
+Numpy arrays also support comparison operations like `==`, `!=`, `>` etc. The result is an array of booleans.
+
+```python
+arr1 = np.array([[1, 2, 3], [3, 4, 5]])
+arr2 = np.array([[2, 2, 3], [1, 2, 5]])
+
+arr1 == arr2
+
+"""
+Output: 
+
+array([[False,  True,  True],
+       [False, False,  True]])
+"""
+```
+
+```python
+arr1 != arr2
+
+"""
+Output:
+ 
+array([[ True, False, False],
+       [ True,  True, False]])
+"""
+```
+
+```python
+arr1 >= arr2
+
+"""
+Output:
+
+array([[False,  True,  True],
+       [ True,  True,  True]])
+"""
+```
+
+```python
+arr1 < arr2
+
+"""
+Output:
+
+array([[ True, False, False],
+       [False, False, False]])
+"""
+```
+
+Array comparison is frequently used to count the number of equal elements in two arrays using the `sum` method. Remember that `True` evaluates to `1` and `False` evaluates to `0` when booleans are used in arithmetic operations.
+
+```python
+(arr1 == arr2).sum()
+
+# Output: 3
+```
