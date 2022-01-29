@@ -682,3 +682,114 @@ Array comparison is frequently used to count the number of equal elements in two
 
 # Output: 3
 ```
+
+## Array indexing and slicing
+
+Numpy extends Python's list indexing notation using `[]` to multiple dimensions in an intuitive fashion. You can provide a comma-separated list of indices or ranges to select a specific element or a subarray (also called a slice) from a Numpy array.
+
+```python
+arr3 = np.array([
+    [[11, 12, 13, 14], 
+     [13, 14, 15, 19]], 
+    
+    [[15, 16, 17, 21], 
+     [63, 92, 36, 18]], 
+    
+    [[98, 32, 81, 23],      
+     [17, 18, 19.5, 43]]])
+
+arr3.shape
+
+# Output: (3, 2, 4)
+```
+
+```python
+# Single element
+
+arr3[1, 1, 2]
+
+# Output: 36.0
+```
+
+```python
+# Subarray using ranges
+
+arr3[1:, 0:1, :2]
+
+"""
+Output:
+
+array([[[15., 16.]],
+
+       [[98., 32.]]])
+"""
+```
+
+```python
+# Mixing indices and ranges
+
+arr3[1:, 1, 3]
+
+# Output: array([18., 43.])
+```
+
+```python
+# Mixing indices and ranges
+
+arr3[1:, 1, :3]
+
+"""
+Output:
+
+array([[63. , 92. , 36. ],
+       [17. , 18. , 19.5]])
+"""
+```
+
+```python
+# Using fewer indices
+
+arr3[1]
+
+"""
+Output:
+
+array([[15., 16., 17., 21.],
+       [63., 92., 36., 18.]])
+"""
+```
+
+```python
+# Using fewer indices
+
+arr3[:2, 1]
+
+"""
+Output:
+
+array([[13., 14., 15., 19.],
+       [63., 92., 36., 18.]])
+"""
+```
+
+```python
+# Using too many indices
+
+arr3[1,3,2,1]
+
+"""
+Output:
+
+---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+<ipython-input-87-fbde713646b3> in <module>
+      1 # Using too many indices
+----> 2 arr3[1,3,2,1]
+
+IndexError: too many indices for array: array is 3-dimensional, but 4 were indexed
+"""
+```
+
+The notation and its results can seem confusing at first, so take your time to experiment and become comfortable with it. Use the cells below to try out some examples of array indexing and slicing, with different combinations of indices and ranges. Here are some more examples demonstrated visually:
+
+<img src="https://scipy-lectures.org/_images/numpy_indexing.png" width="360"></img>
