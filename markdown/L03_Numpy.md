@@ -793,3 +793,32 @@ IndexError: too many indices for array: array is 3-dimensional, but 4 were index
 The notation and its results can seem confusing at first, so take your time to experiment and become comfortable with it. Use the cells below to try out some examples of array indexing and slicing, with different combinations of indices and ranges. Here are some more examples demonstrated visually:
 
 <img src="https://scipy-lectures.org/_images/numpy_indexing.png" width="360"></img>
+
+## Exercises
+
+Try the following exercises to become familiar with Numpy arrays and practice your skills:
+
+- Assignment on Numpy array functions: https://jovian.ai/aakashns/numpy-array-operations
+- (Optional) 100 numpy exercises: https://jovian.ai/aakashns/100-numpy-exercises
+
+## Summary and Further Reading
+
+With this, we complete our discussion of numerical computing with Numpy. We've covered the following topics in this tutorial:
+
+- Going from Python lists to Numpy arrays
+- Operating on Numpy arrays
+- Benefits of using Numpy arrays over lists
+- Multi-dimensional Numpy arrays
+- Working with CSV data files
+- Arithmetic operations and broadcasting
+- Array indexing and slicing
+- Other ways of creating Numpy arrays
+
+
+Check out the following resources for learning more about Numpy:
+
+- Official tutorial: https://numpy.org/devdocs/user/quickstart.html
+- Numpy tutorial on W3Schools: https://www.w3schools.com/python/numpy_intro.asp
+- Advanced Numpy (exploring the internals): http://scipy-lectures.org/advanced/advanced_numpy/index.html
+
+You are ready to move on to the next tutorial: [Analyzing Tabular Data using Pandas](https://jovian.ai/aakashns/python-pandas-data-analysis).
