@@ -1,5 +1,5 @@
 git add -A
-git commit -m "L02_Numpy -> renamed | L03_Pandas -> add"
+git commit -m "Next Topic: Retrieving data from a data frame"
 git push -u origin master
 git status
 exit
