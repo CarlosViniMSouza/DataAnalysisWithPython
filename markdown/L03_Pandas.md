@@ -135,3 +135,80 @@ Here's a summary of the functions & methods we've looked at so far:
 * `.describe()` - View statistical information about numeric columns
 * `.columns` - Get the list of column names
 * `.shape` - Get the number of rows & columns as a tuple
+
+## Retrieving data from a data frame
+
+The first thing you might want to do is retrieve data from this data frame, e.g., the counts of a specific day or the list of values in a particular column. To do this, it might help to understand the internal representation of data in a data frame. Conceptually, you can think of a dataframe as a dictionary of lists: keys are column names, and values are lists/arrays containing data for the respective columns. 
+
+```python
+# Pandas format is simliar to this
+
+covid_data_dict = {
+    'date':       ['2020-08-30', '2020-08-31', '2020-09-01', '2020-09-02', '2020-09-03'],
+    'new_cases':  [1444, 1365, 996, 975, 1326],
+    'new_deaths': [1, 4, 6, 8, 6],
+    'new_tests': [53541, 42583, 54395, None, None]
+}
+```
+
+Representing data in the above format has a few benefits:
+
+* All values in a column typically have the same type of value, so it's more efficient to store them in a single array.
+* Retrieving the values for a particular row simply requires extracting the elements at a given index from each column array.
+* The representation is more compact (column names are recorded only once) compared to other formats that use a dictionary for each row of data (see the example below).
+
+With the dictionary of lists analogy in mind, you can now guess how to retrieve data from a data frame. For example, we can get a list of values from a specific column using the `[]` indexing notation.
+
+```python
+covid_data_dict['new_cases']
+# Output: [1444, 1365, 996, 975, 1326]
+```
+
+```python
+covid_df['new_cases']
+```
+
+Each column is represented using a data structure called `Series`, which is essentially a numpy array with some extra methods and properties.
+
+```python
+type(covid_df['new_cases'])
+
+# Output: pandas.core.series.Series
+```
+
+```python
+## Like arrays, you can retrieve a specific value with a series using the indexing notation [].
+
+covid_df['new_cases'][246]
+
+# Output: 975.0
+```
+
+```python
+covid_df['new_tests'][240]
+# Output: 57640.0
+```
+
+```python
+## Let's look at a few rows before and after this index to verify that the values change from NaN to actual numbers. We can do this by passing a range to loc.
+
+covid_df.loc[108:113]
+```
+
+```python
+## We can use the .sample method to retrieve a random sample of rows from the data frame.
+
+covid_df.sample(10)
+```
+
+Notice that even though we have taken a random sample, each row's original index is preserved - this is a useful property of data frames.
+
+Here's a summary of the functions & methods we looked at in this section:
+
+- `covid_df['new_cases']` - Retrieving columns as a `Series` using the column name
+- `new_cases[243]` - Retrieving values from a `Series` using an index
+- `covid_df.at[243, 'new_cases']` - Retrieving a single value from a data frame
+- `covid_df.copy()` - Creating a deep copy of a data frame
+- `covid_df.loc[243]` - Retrieving a row or range of rows of data from the data frame
+- `head`, `tail`, and `sample` - Retrieving multiple rows of data from the data frame
+- `covid_df.new_tests.first_valid_index` - Finding the first non-empty index in a series
