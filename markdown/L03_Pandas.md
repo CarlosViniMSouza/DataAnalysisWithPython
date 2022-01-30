@@ -212,3 +212,47 @@ Here's a summary of the functions & methods we looked at in this section:
 - `covid_df.loc[243]` - Retrieving a row or range of rows of data from the data frame
 - `head`, `tail`, and `sample` - Retrieving multiple rows of data from the data frame
 - `covid_df.new_tests.first_valid_index` - Finding the first non-empty index in a series
+
+## Analyzing data from data frames
+
+Let's try to answer some questions about our data.
+
+**Q: What are the total number of reported cases and deaths related to Covid-19 in Italy?**
+
+Similar to Numpy arrays, a Pandas series supports the `sum` method to answer these questions.
+
+```python
+total_cases = covid_df.new_cases.sum()
+total_deaths = covid_df.new_deaths.sum()
+print('The number of reported cases is {} and the number of reported deaths is {}.'.format(int(total_cases), int(total_deaths)))
+
+# Output: The number of reported cases is 271515 and the number of reported deaths is 35497.
+```
+
+```python
+# Q: What is the overall death rate (ratio of reported deaths to reported cases)?
+
+death_rate = covid_df.new_deaths.sum() / covid_df.new_cases.sum()
+print("The overall reported death rate in Italy is {:.2f} %.".format(death_rate*100))
+
+# Output: The overall reported death rate in Italy is 13.07 %.
+```
+
+```python
+# Q: What is the overall number of tests conducted? A total of 935310 tests were conducted before daily test numbers were reported.
+
+initial_tests = 935310
+total_tests = initial_tests + covid_df.new_tests.sum()
+total_tests
+
+# Output: 5214766.0
+```
+
+```python
+# Q: What fraction of tests returned a positive result?
+
+positive_rate = total_cases / total_tests
+print('{:.2f}% of tests in Italy led to a positive diagnosis.'.format(positive_rate*100))
+
+# Output: 5.21% of tests in Italy led to a positive diagnosis.
+```
