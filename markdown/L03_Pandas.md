@@ -1,6 +1,6 @@
 # Analyzing Tabular Data using Python and Pandas
 
-![](https://i.imgur.com/zfxLzEv.png)
+![img1](https://i.imgur.com/zfxLzEv.png)
 
 
 This tutorial series is a beginner-friendly introduction to programming and data analysis using the Python programming language. These tutorials take a practical and coding-focused approach. The best way to learn the material is to execute the code and experiment with it yourself. Check out the full series here: 
@@ -50,7 +50,7 @@ This format of storing data is known as *comma-separated values* or CSV.
 We'll download this file using the `urlretrieve` function from the `urllib.request` module.
 
 ```python
-#restart the kernel after installation
+# restart the kernel after installation
 !pip install pandas-profiling --upgrade --quiet
 ```
 
@@ -255,4 +255,109 @@ positive_rate = total_cases / total_tests
 print('{:.2f}% of tests in Italy led to a positive diagnosis.'.format(positive_rate*100))
 
 # Output: 5.21% of tests in Italy led to a positive diagnosis.
+```
+
+## Querying and sorting rows
+
+Let's say we want only want to look at the days which had more than 1000 reported cases. We can use a boolean expression to check which rows satisfy this criterion.
+
+```python
+high_new_cases = covid_df.new_cases > 1000
+
+high_new_cases
+
+"""
+Output:
+
+0      False
+1      False
+2      False
+3      False
+4      False
+       ...  
+243     True
+244     True
+245    False
+246    False
+247     True
+Name: new_cases, Length: 248, dtype: bool
+"""
+```
+
+The boolean expression returns a series containing `True` and `False` boolean values. You can use this series to select a subset of rows from the original dataframe, corresponding to the `True` values in the series.
+
+```python
+covid_df[high_new_cases]
+```
+
+```python
+# We can write this succinctly on a single line by passing the boolean expression as an index to the data frame.
+
+high_cases_df = covid_df[covid_df.new_cases > 1000]
+
+high_cases_df
+```
+
+The data frame contains 72 rows, but only the first & last five rows are displayed by default with Jupyter for brevity. We can change some display options to view all the rows.
+
+```python
+from IPython.display import display
+
+with pd.option_context('display.max_rows', 100):
+    display(covid_df[covid_df.new_cases > 1000])
+```
+
+We can also formulate more complex queries that involve multiple columns. As an example, let's try to determine the days when the ratio of cases reported to tests conducted is higher than the overall `positive_rate`.
+
+```python
+positive_rate
+
+#Output: 0.05206657403227681
+```
+
+```python
+high_ratio_df = covid_df[covid_df.new_cases / covid_df.new_tests > positive_rate]
+
+high_ratio_df
+```
+
+```python
+# The result of performing an operation on two columns is a new series.
+
+covid_df.new_cases / covid_df.new_tests
+
+"""
+Output:
+
+0           NaN
+1           NaN
+2           NaN
+3           NaN
+4           NaN
+         ...   
+243    0.026970
+244    0.032055
+245    0.018311
+246         NaN
+247         NaN
+Length: 248, dtype: float64
+"""
+```
+
+```python
+# We can use this series to add a new column to the data frame.
+
+covid_df['positive_rate'] = covid_df.new_cases / covid_df.new_tests
+
+covid_df
+```
+
+However, keep in mind that sometimes it takes a few days to get the results for a test, so we can't compare the number of new cases with the number of tests conducted on the same day. Any inference based on this `positive_rate` column is likely to be incorrect. It's essential to watch out for such subtle relationships that are often not conveyed within the CSV file and require some external context. It's always a good idea to read through the documentation provided with the dataset or ask for more information.
+
+For now, let's remove the `positive_rate` column using the `drop` method.
+
+```python
+covid_df.drop(columns=['positive_rate'], inplace=True)
+
+# Can you figure the purpose of the inplace argument?
 ```
