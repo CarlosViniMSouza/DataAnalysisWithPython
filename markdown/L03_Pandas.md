@@ -622,3 +622,45 @@ merged_df['tests_per_million'] = merged_df.total_tests * 1e6 / merged_df.populat
 
 merged_df
 ```
+
+## Writing data back to files
+
+After completing your analysis and adding new columns, you should write the results back to a file. Otherwise, the data will be lost when the Jupyter notebook shuts down. Before writing to file, let us first create a data frame containing just the columns we wish to record.
+
+```python
+result_df = merged_df[[
+    'date',
+    'new_cases', 
+    'total_cases', 
+    'new_deaths', 
+    'total_deaths', 
+    'new_tests', 
+    'total_tests', 
+    'cases_per_million', 
+    'deaths_per_million', 
+    'tests_per_million'
+]]
+
+result_df
+```
+
+To write the data from the data frame into a file, we can use the `to_csv` function.
+
+```python
+result_df.to_csv('results.csv', index=None)
+```
+
+The `to_csv` function also includes an additional column for storing the index of the dataframe by default. We pass `index=None` to turn off this behavior. You can now verify that the `results.csv` is created and contains data from the data frame in CSV format:
+
+```
+date,new_cases,total_cases,new_deaths,total_deaths,new_tests,total_tests,cases_per_million,deaths_per_million,tests_per_million
+2020-02-27,78.0,400.0,1.0,12.0,,,6.61574439992122,0.1984723319976366,
+2020-02-28,250.0,650.0,5.0,17.0,,,10.750584649871982,0.28116913699665186,
+2020-02-29,238.0,888.0,4.0,21.0,,,14.686952567825108,0.34732658099586405,
+2020-03-01,240.0,1128.0,8.0,29.0,,,18.656399207777838,0.47964146899428844,
+2020-03-02,561.0,1689.0,6.0,35.0,,,27.93498072866735,0.5788776349931067,
+2020-03-03,347.0,2036.0,17.0,52.0,,,33.67413899559901,0.8600467719897585,
+...
+```
+
+You can find the CSV file in the "Files" tab on the project page.
