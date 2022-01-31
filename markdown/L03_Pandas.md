@@ -361,3 +361,54 @@ covid_df.drop(columns=['positive_rate'], inplace=True)
 
 # Can you figure the purpose of the inplace argument?
 ```
+
+### Sorting rows using column values
+
+The rows can also be sorted by a specific column using `.sort_values`. Let's sort to identify the days with the highest number of cases, then chain it with the `head` method to list just the first ten results.
+
+```python
+covid_df.sort_values('new_cases', ascending=False).head(10)
+```
+
+```python
+# It looks like the last two weeks of March had the highest number of daily cases. Let's compare this to the days where the highest number of deaths were recorded.
+
+covid_df.sort_values('new_deaths', ascending=False).head(10)
+```
+
+It appears that daily deaths hit a peak just about a week after the peak in daily new cases.
+
+Let's also look at the days with the least number of cases. We might expect to see the first few days of the year on this list.
+
+```python
+covid_df.sort_values('new_cases').head(10)
+```
+
+```python
+# Let's look at some days before and after Jun 20, 2020.
+
+covid_df.loc[166:175]
+```
+
+For now, let's assume this was indeed a data entry error. We can use one of the following approaches for dealing with the missing or faulty value:
+1. Replace it with `0`.
+2. Replace it with the average of the entire column
+3. Replace it with the average of the values on the previous & next date
+4. Discard the row entirely
+
+Which approach you pick requires some context about the data and the problem. In this case, since we are dealing with data ordered by date, we can go ahead with the third approach.
+
+You can use the `.at` method to modify a specific value within the dataframe.
+
+```python
+covid_df.at[172, 'new_cases'] = (covid_df.at[171, 'new_cases'] + covid_df.at[173, 'new_cases'])/2
+```
+
+Here's a summary of the functions & methods we looked at in this section:
+
+- `covid_df.new_cases.sum()` - Computing the sum of values in a column or series
+- `covid_df[covid_df.new_cases > 1000]` - Querying a subset of rows satisfying the chosen criteria using boolean expressions
+- `df['pos_rate'] = df.new_cases/df.new_tests` - Adding new columns by combining data from existing columns
+- `covid_df.drop('positive_rate')` - Removing one or more columns from the data frame
+- `sort_values` - Sorting the rows of a data frame using column values
+- `covid_df.at[172, 'new_cases'] = ...` - Replacing a value within the data frame
