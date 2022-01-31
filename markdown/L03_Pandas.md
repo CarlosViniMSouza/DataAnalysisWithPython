@@ -538,3 +538,38 @@ covid_df[covid_df.weekday == 6].new_cases.mean()
 It seems like more cases were reported on Sundays compared to other days.
 
 Try asking and answering some more date-related questions about the data using the cells below.
+
+## Grouping and aggregation
+
+As a next step, we might want to summarize the day-wise data and create a new dataframe with month-wise data. We can use the `groupby` function to create a group for each month, select the columns we wish to aggregate, and aggregate them using the `sum` method.
+
+```python
+covid_month_df = covid_df.groupby('month')[['new_cases', 'new_deaths', 'new_tests']].sum()
+
+covid_month_df
+```
+
+The result is a new data frame that uses unique values from the column passed to `groupby` as the index. Grouping and aggregation is a powerful method for progressively summarizing data into smaller data frames.
+
+Instead of aggregating by sum, you can also aggregate by other measures like mean. Let's compute the average number of daily new cases, deaths, and tests for each month.
+
+```python
+covid_month_mean_df = covid_df.groupby('month')[['new_cases', 'new_deaths', 'new_tests']].mean()
+
+covid_month_mean_df
+```
+
+Apart from grouping, another form of aggregation is the running or cumulative sum of cases, tests, or death up to each row's date. We can use the `cumsum` method to compute the cumulative sum of a column as a new series. Let's add three new columns: `total_cases`, `total_deaths`, and `total_tests`.
+
+```python
+covid_df['total_cases'] = covid_df.new_cases.cumsum()
+covid_df['total_deaths'] = covid_df.new_deaths.cumsum()
+covid_df['total_tests'] = covid_df.new_tests.cumsum() + initial_tests
+
+# We've also included the initial test count in total_test to account for 
+# tests conducted before daily reporting was started.
+
+covid_df
+
+# Notice how the `NaN` values in the `total_tests` column remain unaffected.
+```
