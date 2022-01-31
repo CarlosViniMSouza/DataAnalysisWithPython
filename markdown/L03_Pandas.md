@@ -412,3 +412,129 @@ Here's a summary of the functions & methods we looked at in this section:
 - `covid_df.drop('positive_rate')` - Removing one or more columns from the data frame
 - `sort_values` - Sorting the rows of a data frame using column values
 - `covid_df.at[172, 'new_cases'] = ...` - Replacing a value within the data frame
+
+## Working with dates
+
+While we've looked at overall numbers for the cases, tests, positive rate, etc., it would also be useful to study these numbers on a month-by-month basis. The `date` column might come in handy here, as Pandas provides many utilities for working with dates.
+
+```python
+covid_df.date
+
+"""
+Output:
+
+0      2019-12-31
+1      2020-01-01
+2      2020-01-02
+3      2020-01-03
+4      2020-01-04
+          ...    
+243    2020-08-30
+244    2020-08-31
+245    2020-09-01
+246    2020-09-02
+247    2020-09-03
+Name: date, Length: 248, dtype: object
+"""
+```
+
+```python
+# The data type of date is currently object, so Pandas does not know that this column is a date. We can convert it into a datetime column using the pd.to_datetime method.
+
+covid_df['date'] = pd.to_datetime(covid_df.date)
+
+covid_df['date']
+
+"""
+Output:
+
+0     2019-12-31
+1     2020-01-01
+2     2020-01-02
+3     2020-01-03
+4     2020-01-04
+         ...    
+243   2020-08-30
+244   2020-08-31
+245   2020-09-01
+246   2020-09-02
+247   2020-09-03
+Name: date, Length: 248, dtype: datetime64[ns]
+"""
+```
+
+You can see that it now has the datatype `datetime64`. We can now extract different parts of the data into separate columns, using the `DatetimeIndex` class ([view docs](https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DatetimeIndex.html)).
+
+```python
+covid_df['year'] = pd.DatetimeIndex(covid_df.date).year
+covid_df['month'] = pd.DatetimeIndex(covid_df.date).month
+covid_df['day'] = pd.DatetimeIndex(covid_df.date).day
+covid_df['weekday'] = pd.DatetimeIndex(covid_df.date).weekday
+
+covid_df
+```
+
+Let's check the overall metrics for May. We can query the rows for May, choose a subset of columns, and use the `sum` method to aggregate each selected column's values.
+
+```python
+# Query the rows for May
+covid_df_may = covid_df[covid_df.month == 5]
+
+# Extract the subset of columns to be aggregated
+covid_df_may_metrics = covid_df_may[['new_cases', 'new_deaths', 'new_tests']]
+
+# Get the column-wise sum
+covid_may_totals = covid_df_may_metrics.sum()
+
+covid_may_totals
+
+"""
+Output:
+
+new_cases       29073.0
+new_deaths       5658.0
+new_tests     1078720.0
+dtype: float64
+"""
+```
+
+```python
+type(covid_may_totals)
+
+# Output: pandas.core.series.Series
+```
+
+```python
+# We can also combine the above operations into a single statement.
+
+covid_df[covid_df.month == 5][['new_cases', 'new_deaths', 'new_tests']].sum()
+
+"""
+Output:
+
+new_cases       29073.0
+new_deaths       5658.0
+new_tests     1078720.0
+dtype: float64
+"""
+```
+
+As another example, let's check if the number of cases reported on Sundays is higher than the average number of cases reported every day. This time, we might want to aggregate columns using the `.mean` method.
+
+```python
+# Overall average
+covid_df.new_cases.mean()
+
+# Output: 1096.6149193548388
+```
+
+```python
+# Average for Sundays
+covid_df[covid_df.weekday == 6].new_cases.mean()
+
+# Output: 1247.2571428571428
+```
+
+It seems like more cases were reported on Sundays compared to other days.
+
+Try asking and answering some more date-related questions about the data using the cells below.
