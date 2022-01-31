@@ -573,3 +573,52 @@ covid_df
 
 # Notice how the `NaN` values in the `total_tests` column remain unaffected.
 ```
+
+## Merging data from multiple sources
+
+To determine other metrics like test per million, cases per million, etc., we require some more information about the country, viz. its population. Let's download another file `locations.csv` that contains health-related information for many countries, including Italy.
+
+```python
+urlretrieve('https://gist.githubusercontent.com/aakashns/8684589ef4f266116cdce023377fc9c8/raw/99ce3826b2a9d1e6d0bde7e9e559fc8b6e9ac88b/locations.csv', 
+            'locations.csv')
+
+# Output: ('locations.csv', <http.client.HTTPMessage at 0x7f87c57a41f0>)
+```
+
+```python
+locations_df = pd.read_csv('locations.csv')
+
+locations_df
+```
+
+```python
+locations_df[locations_df.location == "Italy"]
+```
+
+We can merge this data into our existing data frame by adding more columns. However, to merge two data frames, we need at least one common column. Let's insert a `location` column in the `covid_df` dataframe with all values set to `"Italy"`.
+
+```python
+covid_df['location'] = "Italy"
+
+covid_df
+```
+
+We can now add the columns from `locations_df` into `covid_df` using the `.merge` method.
+
+```python
+merged_df = covid_df.merge(locations_df, on="location")
+
+merged_df
+```
+
+The location data for Italy is appended to each row within `covid_df`. If the `covid_df` data frame contained data for multiple locations, then the respective country's location data would be appended for each row.
+
+We can now calculate metrics like cases per million, deaths per million, and tests per million.
+
+```python
+merged_df['cases_per_million'] = merged_df.total_cases * 1e6 / merged_df.population
+merged_df['deaths_per_million'] = merged_df.total_deaths * 1e6 / merged_df.population
+merged_df['tests_per_million'] = merged_df.total_tests * 1e6 / merged_df.population
+
+merged_df
+```
