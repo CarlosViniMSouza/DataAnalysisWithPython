@@ -132,3 +132,109 @@ plt.ylabel('Yield (tons per hectare)')
 plt.title("Crop Yields in Kanto")
 plt.legend(['Apples', 'Oranges'])
 ```
+
+### Styling Lines and Markers
+
+The `plt.plot` function supports many arguments for styling lines and markers:
+
+- `color` or `c`: Set the color of the line ([supported colors](https://matplotlib.org/3.1.0/gallery/color/named_colors.html))
+- `linestyle` or `ls`: Choose between a solid or dashed line
+- `linewidth` or `lw`: Set the width of a line
+- `markersize` or `ms`: Set the size of markers
+- `markeredgecolor` or `mec`: Set the edge color for markers
+- `markeredgewidth` or `mew`: Set the edge width for markers
+- `markerfacecolor` or `mfc`: Set the fill color for markers
+- `alpha`: Opacity of the plot
+
+Check out the documentation for `plt.plot` to learn more: [https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot)
+
+```python
+plt.plot(years, apples, marker='s', c='b', ls='-', lw=2, ms=8, mew=2, mec='navy')
+plt.plot(years, oranges, marker='o', c='r', ls='--', lw=3, ms=10, alpha=.5)
+
+plt.xlabel('Year')
+plt.ylabel('Yield (tons per hectare)')
+
+plt.title("Crop Yields in Kanto")
+plt.legend(['Apples', 'Oranges'])
+```
+
+The `fmt` argument provides a shorthand for specifying the marker shape, line style, and line color. It can be provided as the third argument to `plt.plot`.
+
+```
+fmt = '[marker][line][color]'
+```
+
+```python
+plt.plot(years, apples, 's-b')
+plt.plot(years, oranges, 'o--r')
+
+plt.xlabel('Year')
+plt.ylabel('Yield (tons per hectare)')
+
+plt.title("Crop Yields in Kanto")
+plt.legend(['Apples', 'Oranges'])
+```
+
+```python
+# If you don't specify a line style in fmt, only markers are drawn.
+
+plt.plot(years, oranges, 'or')
+plt.title("Yield of Oranges (tons per hectare)")
+```
+
+### Changing the Figure Size
+
+You can use the `plt.figure` function to change the size of the figure.
+
+```python
+plt.figure(figsize=(12, 6))
+
+plt.plot(years, oranges, 'or')
+plt.title("Yield of Oranges (tons per hectare)")
+```
+
+### Improving Default Styles using Seaborn
+
+An easy way to make your charts look beautiful is to use some default styles from the Seaborn library. These can be applied globally using the `sns.set_style` function. You can see a full list of predefined styles here: https://seaborn.pydata.org/generated/seaborn.set_style.html
+
+```python
+sns.set_style("whitegrid")
+
+plt.plot(years, apples, 's-b')
+plt.plot(years, oranges, 'o--r')
+
+plt.xlabel('Year')
+plt.ylabel('Yield (tons per hectare)')
+
+plt.title("Crop Yields in Kanto")
+plt.legend(['Apples', 'Oranges'])
+```
+
+```python
+sns.set_style("darkgrid")
+
+plt.plot(years, apples, 's-b')
+plt.plot(years, oranges, 'o--r')
+
+plt.xlabel('Year')
+plt.ylabel('Yield (tons per hectare)')
+
+plt.title("Crop Yields in Kanto")
+plt.legend(['Apples', 'Oranges'])
+```
+
+```python
+plt.plot(years, oranges, 'or')
+plt.title("Yield of Oranges (tons per hectare)")
+```
+
+You can also edit default styles directly by modifying the `matplotlib.rcParams` dictionary. Learn more: https://matplotlib.org/3.2.1/tutorials/introductory/customizing.html#matplotlib-rcparams
+
+```python
+import matplotlib
+
+matplotlib.rcParams['font.size'] = 14
+matplotlib.rcParams['figure.figsize'] = (9, 5)
+matplotlib.rcParams['figure.facecolor'] = '#00000000'
+```
