@@ -269,3 +269,40 @@ We can use a scatter plot to visualize how sepal length & sepal width vary using
 ```python
 sns.scatterplot(x=flowers_df.sepal_length, y=flowers_df.sepal_width)
 ```
+
+### Adding Hues
+
+Notice how the points in the above plot seem to form distinct clusters with some outliers. We can color the dots using the flower species as a `hue`. We can also make the points larger using the `s` argument.
+
+```python
+sns.scatterplot(x=flowers_df.sepal_length, y=flowers_df.sepal_width, hue=flowers_df.species, s=100)
+```
+
+Adding hues makes the plot more informative. We can immediately tell that Setosa flowers have a smaller sepal length but higher sepal widths. In contrast, the opposite is true for Virginica flowers. 
+
+### Customizing Seaborn Figures
+
+Since Seaborn uses Matplotlib's plotting functions internally, we can use functions like `plt.figure` and `plt.title` to modify the figure.
+
+```python
+plt.figure(figsize=(12, 6))
+plt.title('Sepal Dimensions')
+
+sns.scatterplot(x=flowers_df.sepal_length, 
+                y=flowers_df.sepal_width, 
+                hue=flowers_df.species,
+                s=100)
+```
+
+### Plotting using Pandas Data Frames
+
+Seaborn has in-built support for Pandas data frames. Instead of passing each column as a series, you can provide column names and use the `data` argument to specify a data frame.
+
+```python
+plt.title('Sepal Dimensions')
+sns.scatterplot(x='sepal_length', 
+                y='sepal_width', 
+                hue='species',
+                s=100,
+                data=flowers_df)
+```
