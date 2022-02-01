@@ -45,3 +45,44 @@ import seaborn as sns
 
 Notice this we also include the special command `%matplotlib inline` to ensure that our plots are shown and embedded within the Jupyter notebook itself. Without this command, sometimes plots may show up in pop-up windows.
 
+## Line Chart
+
+The line chart is one of the simplest and most widely used data visualization techniques. A line chart displays information as a series of data points or markers connected by straight lines. You can customize the shape, size, color, and other aesthetic elements of the lines and markers for better visual clarity.
+
+Here's a Python list showing the yield of apples (tons per hectare) over six years in an imaginary country called Kanto.
+
+```python
+yield_apples = [0.895, 0.91, 0.919, 0.926, 0.929, 0.931]
+
+# We can visualize how the yield of apples changes over time using a line chart. To draw a line chart, we can use the plt.plot function.
+
+plt.plot(yield_apples)
+```
+
+Calling the `plt.plot` function draws the line chart as expected. It also returns a list of plots drawn `[<matplotlib.lines.Line2D at 0x7ff70aa20760>]`, shown within the output. We can include a semicolon (`;`) at the end of the last statement in the cell to avoiding showing the output and display just the graph.
+
+```python
+plt.plot(yield_apples)
+
+# Let's enhance this plot step-by-step to make it more informative and beautiful.
+```
+
+### Customizing the X-axis
+
+The X-axis of the plot currently shows list element indexes 0 to 5. The plot would be more informative if we could display the year for which we're plotting the data. We can do this by two arguments `plt.plot`.
+
+```python
+years = [2010, 2011, 2012, 2013, 2014, 2015]
+yield_apples = [0.895, 0.91, 0.919, 0.926, 0.929, 0.931]
+plt.plot(years, yield_apples)
+```
+
+### Axis Labels
+
+We can add labels to the axes to show what each axis represents using the `plt.xlabel` and `plt.ylabel` methods.
+
+```python
+plt.plot(years, yield_apples)
+plt.xlabel('Year')
+plt.ylabel('Yield (tons per hectare)')
+```
