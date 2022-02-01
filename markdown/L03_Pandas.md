@@ -725,3 +725,32 @@ covid_month_df.new_cases.plot(kind='bar')
 ```python
 covid_month_df.new_tests.plot(kind='bar')
 ```
+
+## Exercises
+
+Try the following exercises to become familiar with Pandas dataframe and practice your skills:
+
+* Assignment on Pandas dataframes: https://jovian.ml/aakashns/pandas-practice-assignment
+* Additional exercises on Pandas: https://github.com/guipsamora/pandas_exercises
+* Try downloading and analyzing some data from Kaggle: https://www.kaggle.com/datasets
+
+## Summary and Further Reading
+
+
+We've covered the following topics in this tutorial:
+
+- Reading a CSV file into a Pandas data frame
+- Retrieving data from Pandas data frames
+- Querying, soring, and analyzing data
+- Merging, grouping, and aggregation of data
+- Extracting useful information from dates
+- Basic plotting using line and bar charts
+- Writing data frames to CSV files
+
+
+Check out the following resources to learn more about Pandas:
+
+* User guide for Pandas: https://pandas.pydata.org/docs/user_guide/index.html
+* Python for Data Analysis (book by Wes McKinney - creator of Pandas): https://www.oreilly.com/library/view/python-for-data/9781491957653/
+
+You are ready to move on to the next tutorial: [Data Visualization using Matplotlib & Seaborn](https://jovian.ai/aakashns/python-matplotlib-data-visualization).

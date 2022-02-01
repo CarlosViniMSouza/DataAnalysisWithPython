@@ -1,5 +1,5 @@
 git add -A
-git commit -m "Next Topic: Conclusion | L03_Pandas.ipynb -> alts add"
+git commit -m "L03_Pandas.md & L03_Pandas.ipynb -> add & finished"
 git push -u origin master
 git status
 exit
