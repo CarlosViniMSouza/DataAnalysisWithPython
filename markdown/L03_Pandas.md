@@ -664,3 +664,64 @@ date,new_cases,total_cases,new_deaths,total_deaths,new_tests,total_tests,cases_p
 ```
 
 You can find the CSV file in the "Files" tab on the project page.
+
+## Bonus: Basic Plotting with Pandas
+
+We generally use a library like `matplotlib` or `seaborn` plot graphs within a Jupyter notebook. However, Pandas dataframes & series provide a handy `.plot` method for quick and easy plotting.
+
+Let's plot a line graph showing how the number of daily cases varies over time.
+
+```python
+result_df.new_cases.plot()
+```
+
+While this plot shows the overall trend, it's hard to tell where the peak occurred, as there are no dates on the X-axis. We can use the `date` column as the index for the data frame to address this issue.
+
+```python
+result_df.set_index('date', inplace=True)
+
+result_df
+```
+
+```python
+# Notice that the index of a data frame doesn't have to be numeric. Using the date as the index also allows us to get the data for a specific data using .loc.
+
+result_df.loc['2020-09-01']
+```
+
+```python
+# Let's plot the new cases & new deaths per day as line graphs.
+
+result_df.new_cases.plot()
+result_df.new_deaths.plot()
+```
+
+```python
+# We can also compare the total cases vs. total deaths.
+
+result_df.total_cases.plot()
+result_df.total_deaths.plot()
+```
+
+```python
+# Let's see how the death rate and positive testing rates vary over time.
+
+death_rate = result_df.total_deaths / result_df.total_cases
+death_rate.plot(title='Death Rate')
+```
+
+```python
+positive_rates = result_df.total_cases / result_df.total_tests
+
+positive_rates.plot(title='Positive Rate')
+```
+
+```python
+# Finally, let's plot some month-wise data using a bar chart to visualize the trend at a higher level.
+
+covid_month_df.new_cases.plot(kind='bar')
+```
+
+```python
+covid_month_df.new_tests.plot(kind='bar')
+```
