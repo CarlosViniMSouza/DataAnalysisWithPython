@@ -306,3 +306,40 @@ sns.scatterplot(x='sepal_length',
                 s=100,
                 data=flowers_df)
 ```
+
+## Histogram
+
+A histogram represents the distribution of a variable by creating bins (interval) along the range of values and showing vertical bars to indicate the number of observations in each bin. 
+
+For example, let's visualize the distribution of values of sepal width in the flowers dataset. We can use the `plt.hist` function to create a histogram.
+
+```python
+# Load data into a Pandas dataframe
+
+flowers_df = sns.load_dataset("iris")
+flowers_df.sepal_width
+
+"""
+Output:
+
+0      3.5
+1      3.0
+2      3.2
+3      3.1
+4      3.6
+      ... 
+145    3.0
+146    2.5
+147    3.0
+148    3.4
+149    3.0
+Name: sepal_width, Length: 150, dtype: float64
+"""
+```
+
+```python
+plt.title("Distribution of Sepal Width")
+plt.hist(flowers_df.sepal_width)
+```
+
+We can immediately see that the sepal widths lie in the range 2.0 - 4.5, and around 35 values are in the range 2.9 - 3.1, which seems to be the most populous bin.
