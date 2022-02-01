@@ -1,4 +1,4 @@
 git add -A
-git commit -m "Next Topic: Controlling the size and number of bins"
+git commit -m "Next Topic: Multiple Histograms"
 git push -u origin master
 git status

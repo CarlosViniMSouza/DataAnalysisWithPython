@@ -343,3 +343,24 @@ plt.hist(flowers_df.sepal_width)
 ```
 
 We can immediately see that the sepal widths lie in the range 2.0 - 4.5, and around 35 values are in the range 2.9 - 3.1, which seems to be the most populous bin.
+
+### Controlling the size and number of bins
+
+We can control the number of bins or the size of each one using the bins argument.
+
+```python
+# Specifying the number of bins
+plt.hist(flowers_df.sepal_width, bins=5)
+```
+
+```python
+import numpy as np
+
+# Specifying the boundaries of each bin
+plt.hist(flowers_df.sepal_width, bins=np.arange(2, 5, 0.25))
+```
+
+```python
+# Bins of unequal sizes
+plt.hist(flowers_df.sepal_width, bins=[1, 3, 4, 4.5])
+```
