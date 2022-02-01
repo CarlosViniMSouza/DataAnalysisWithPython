@@ -4,6 +4,8 @@
 
 [Course about Data Analysis with Python Course - Numpy, Pandas, Data Visualization](https://www.youtube.com/watch?v=GPVsHOlRBBI&ab_channel=freeCodeCamp.org)
 
+[music](https://www.youtube.com/watch?v=DArzZ3RvejU&ab_channel=TrapNation)
+
 The course is divided into 5 modules. Here is what the modules cover.
 
 ## Lesson 1: Python & Jupyter Fundamentals

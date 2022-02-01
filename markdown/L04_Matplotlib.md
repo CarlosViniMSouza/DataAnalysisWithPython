@@ -238,3 +238,34 @@ matplotlib.rcParams['font.size'] = 14
 matplotlib.rcParams['figure.figsize'] = (9, 5)
 matplotlib.rcParams['figure.facecolor'] = '#00000000'
 ```
+
+## Scatter Plot
+
+In a scatter plot, the values of 2 variables are plotted as points on a 2-dimensional grid. Additionally, you can also use a third variable to determine the size or color of the points. Let's try out an example.
+
+The [Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set) provides sample measurements of sepals and petals for three species of flowers. The Iris dataset is included with the Seaborn library and can be loaded as a Pandas data frame.
+
+```python
+# Load data into a Pandas dataframe
+flowers_df = sns.load_dataset("iris")
+flowers_df
+```
+
+```python
+flowers_df.species.unique()
+# Output: array(['setosa', 'versicolor', 'virginica'], dtype=object)
+```
+
+Let's try to visualize the relationship between sepal length and sepal width. Our first instinct might be to create a line chart using `plt.plot`.
+
+```python
+plt.plot(flowers_df.sepal_length, flowers_df.sepal_width)
+```
+
+The output is not very informative as there are too many combinations of the two properties within the dataset. There doesn't seem to be simple relationship between them.
+
+We can use a scatter plot to visualize how sepal length & sepal width vary using the `scatterplot` function from the `seaborn` module (imported as `sns`).
+
+```python
+sns.scatterplot(x=flowers_df.sepal_length, y=flowers_df.sepal_width)
+```
