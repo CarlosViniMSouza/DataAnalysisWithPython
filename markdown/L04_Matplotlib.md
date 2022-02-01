@@ -86,3 +86,49 @@ plt.plot(years, yield_apples)
 plt.xlabel('Year')
 plt.ylabel('Yield (tons per hectare)')
 ```
+
+### Plotting Multiple Lines
+
+You can invoke the `plt.plot` function once for each line to plot multiple lines in the same graph. Let's compare the yields of apples vs. oranges in Kanto.
+
+```python
+years = range(2000, 2012)
+apples = [0.895, 0.91, 0.919, 0.926, 0.929, 0.931, 0.934, 0.936, 0.937, 0.9375, 0.9372, 0.939]
+oranges = [0.962, 0.941, 0.930, 0.923, 0.918, 0.908, 0.907, 0.904, 0.901, 0.898, 0.9, 0.896, ]
+
+plt.plot(years, apples)
+plt.plot(years, oranges)
+
+plt.xlabel('Year')
+plt.ylabel('Yield (tons per hectare)')
+```
+
+### Chart Title and  Legend
+
+To differentiate between multiple lines, we can include a legend within the graph using the `plt.legend` function. We can also set a title for the chart using the `plt.title` function.
+
+```python
+plt.plot(years, apples)
+plt.plot(years, oranges)
+
+plt.xlabel('Year')
+plt.ylabel('Yield (tons per hectare)')
+
+plt.title("Crop Yields in Kanto")
+plt.legend(['Apples', 'Oranges'])
+```
+
+### Line Markers
+
+We can also show markers for the data points on each line using the `marker` argument of `plt.plot`. Matplotlib provides many different markers, like a circle, cross, square, diamond, etc. You can find the full list of marker types here: https://matplotlib.org/3.1.1/api/markers_api.html
+
+```python
+plt.plot(years, apples, marker='o')
+plt.plot(years, oranges, marker='x')
+
+plt.xlabel('Year')
+plt.ylabel('Yield (tons per hectare)')
+
+plt.title("Crop Yields in Kanto")
+plt.legend(['Apples', 'Oranges'])
+```
