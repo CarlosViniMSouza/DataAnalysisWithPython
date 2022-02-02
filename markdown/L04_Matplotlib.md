@@ -364,3 +364,30 @@ plt.hist(flowers_df.sepal_width, bins=np.arange(2, 5, 0.25))
 # Bins of unequal sizes
 plt.hist(flowers_df.sepal_width, bins=[1, 3, 4, 4.5])
 ```
+
+### Multiple Histograms
+
+Similar to line charts, we can draw multiple histograms in a single chart. We can reduce each histogram's opacity  so that one histogram's bars don't hide the others'.
+
+Let's draw separate histograms for each species of flowers.
+
+```python
+setosa_df = flowers_df[flowers_df.species == 'setosa']
+versicolor_df = flowers_df[flowers_df.species == 'versicolor']
+virginica_df = flowers_df[flowers_df.species == 'virginica']
+
+plt.hist(setosa_df.sepal_width, alpha=0.4, bins=np.arange(2, 5, 0.25))
+plt.hist(versicolor_df.sepal_width, alpha=0.4, bins=np.arange(2, 5, 0.25))
+```
+
+```python
+# We can also stack multiple histograms on top of one another.
+
+plt.title('Distribution of Sepal Width')
+
+plt.hist([setosa_df.sepal_width, versicolor_df.sepal_width, virginica_df.sepal_width], 
+         bins=np.arange(2, 5, 0.25), 
+         stacked=True)
+
+plt.legend(['Setosa', 'Versicolor', 'Virginica'])
+```
