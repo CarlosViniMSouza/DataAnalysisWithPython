@@ -391,3 +391,50 @@ plt.hist([setosa_df.sepal_width, versicolor_df.sepal_width, virginica_df.sepal_w
 
 plt.legend(['Setosa', 'Versicolor', 'Virginica'])
 ```
+## Bar Chart
+
+Bar charts are quite similar to line charts, i.e., they show a sequence of values. However, a bar is shown for each value, rather than points connected by lines. We can use the `plt.bar` function to draw a bar chart.
+
+```python
+years = range(2000, 2006)
+apples = [0.35, 0.6, 0.9, 0.8, 0.65, 0.8]
+oranges = [0.4, 0.8, 0.9, 0.7, 0.6, 0.8]
+
+plt.bar(years, oranges)
+```
+
+Like histograms, we can stack bars on top of one another. We use the `bottom` argument of `plt.bar` to achieve this.
+
+```python
+plt.bar(years, apples)
+plt.bar(years, oranges, bottom=apples)
+```
+
+### Bar Plots with Averages
+
+Let's look at another sample dataset included with Seaborn, called `tips`. The dataset contains information about the sex, time of day, total bill, and tip amount for customers visiting a restaurant over a week.
+
+```python
+tips_df = sns.load_dataset("tips")
+tips_df
+```
+
+We might want to draw a bar chart to visualize how the average bill amount varies across different days of the week. One way to do this would be to compute the day-wise averages and then use `plt.bar` (try it as an exercise).
+
+However, since this is a very common use case, the Seaborn library provides a `barplot` function which can automatically compute averages.
+
+```python
+sns.barplot(x='day', y='total_bill', data=tips_df)
+```
+The lines cutting each bar represent the amount of variation in the values. For instance, it seems like the variation in the total bill is relatively high on Fridays and low on Saturday.
+
+We can also specify a `hue` argument to compare bar plots side-by-side based on a third feature, e.g., sex.
+
+```python
+sns.barplot(x='day', y='total_bill', hue='sex', data=tips_df)
+```
+```python
+# You can make the bars horizontal simply by switching the axes.
+
+sns.barplot(x='total_bill', y='day', hue='sex', data=tips_df)
+```
